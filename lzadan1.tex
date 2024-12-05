@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algpseudocode}
+\usepackage{lmodern}  
+\title{Algorytmy lista 1}
+\begin{document}
+	\maketitle
+	\section{Wstęp}
+		Na potrzeby zadania 1 zamieszczono podane w prezentacji algorytmy MAX oraz połówkowy algorytm MAX
+			\subsection{Algorytm MAX}
+				\begin{algorithmic}[1]
+					\Require n>=1
+					\Require \(x_1\) \dots \(x_n\)
+					\State Wynik y - największa spośród liczb \(x_1\) \dots \(x_n\)
+					\State[Krok 1] y:=\(x_1\)
+					\State[Krok 2] i:=1
+					\If{i>n}
+						\State[Krok 3] Idź do krok 7
+					\EndIf
+					\If{(\(x_i\) > y}
+						\State[Krok 4]] y:=\(x_i\)
+					\EndIf	
+					\State[Krok 5] i:=i+1
+					\State[Krok 6] Przejdź do kroku 3
+					\State[Krok 7] Szukana liczbą jest y (KONIEC)
+				\end{algorithmic}[1]
+			\subsection{Połówkowy Algorytm MAX}
+				\begin{algorithmic}[2]
+				 	\Require $n \in \mathbb{N}$ i n liczb \(a_1\), \(a_2\),\dots,\(a_n\) 
+				 	\State Wynik max - największa spośród liczb
+				 	\(a_1\), \(a_2\),\dots,\(a_n\) 
+				 	\State M:=$\emptyset$ (M: zbiór kandydatów na maximum, na początku pusty)
+				 	\If{n jest parzysta}
+				 		\State k:=n-1
+				 	\Else
+				 		\State k:=n-2
+				 	\EndIf
+				 	\For{$n = 1,2, \dots, k$}
+						\If{\(a_i\) <= \(a_{i+1}\)}
+							\State M:= $M \cup \{a_{i+1}\}$
+						\Else
+							\State M := $M \cup \{a_i\}$	
+						\EndIf
+				 	\EndFor
+				 	\If{n jest liczbą parzystą}
+				 		\State M := $M \cup \{a_i\}$
+				 	\EndIf
+				 	\State Znajdź maksimum max w zbiorze M, stosując prosty algorytm MAX
+				 	\State Koniec, max zawiera poszukiwaną wartość
+				\end{algorithmic}[2]
+		\section{Zadanie 1}
+			\subsection{pkt 1}
+				\begin{algorithmic}[3]
+					\Require n>=1
+					\Require \(x_1\) \dots \(x_n\)
+					\State Wynik y - największa spośród liczb \(x_1\) \dots \(x_n\)
+					\State[Krok 1] y:=\(x_1\)
+					\State[Krok 2] i:=1
+					\For{$i = 1,2, \dots, n$}
+					\If{(\(x_i\) > y}
+					\State[Krok 3]] y:=\(x_i\)
+					\EndIf	
+					\EndFor
+					\State[Krok 4] Szukana liczbą jest y (KONIEC)
+				\end{algorithmic}[3]
+			\subsection{pkt 2}
+				\begin{algorithmic}[4]
+					\Require $n \in \mathbb{N}$ i n liczb \(a_1\), \(a_2\),\dots,\(a_n\) 
+					\State Wynik max - największa spośród liczb
+					\(a_1\), \(a_2\),\dots,\(a_n\) 
+					\State M:=$\emptyset$ (M: zbiór kandydatów na maximum, na początku pusty)
+					\If{n jest parzysta}
+					\State k:=n-1
+					\Else
+					\State k:=n-2
+					\EndIf
+					\If{n<=k}[pętla]
+					\If{\(a_i\) <= \(a_{i+1}\)}
+					\State M:= $M \cup \{a_{i+1}\}$
+					\Else
+					\State M := $M \cup \{a_i\}$	
+					\EndIf
+					\EndIf
+					\State n:=n+1
+					\If{n==k}
+					\State Idź do [pętla]
+					\EndIf
+					\If{n jest liczbą parzystą}
+					\State M := $M \cup \{a_i\}$
+					\EndIf
+					\State Znajdź maksimum max w zbiorze M, stosując prosty algorytm MAX
+					\State Koniec, max zawiera poszukiwaną wartość
+				\end{algorithmic}[4]
+		\section{Zadanie 2}
+			\subsection{Cel}
+				Celem algorytmu jest porównanie dwóch ciągów znaków zawierających cyfry.
+			\subsection{Wejście}
+				Algorytm przyjmuje dwa ciągi znaków (numeric).
+			\subsection{Wyjście}
+				Zmienna typu zawierająca wartość większej liczby
+			\subsection{Założenia}
+				Oba ciągi znaków zawierają tylko cyfry
+			\subsection{Kroki działania}
+				\begin{algorithmic}[5]
+					\Require $str1 \in [0-9]$
+					\Require $str2 \in [0-9]$
+					\State lStr1:=len(str1)
+					\State lStr2:=len(str2)
+					\State greaterNumber:=str1
+					\If{lStr1 > lStr2}
+					\State greaterNumber:=lStr1
+					\ElsIf{lStr1 < lStr2}
+					\State greaterNumber:=lStr2
+					\ElsIf{lStr1 == lStr2}
+					\For{$i \in 0,1,\dots, lStr1$}
+					\If{str1[i] == str2[i]}
+					\State continue
+					\ElsIf{str1[i] > str2[i]}
+					\State greaterNumber:=lStr1
+					\State break
+					\ElsIf{str1[i] < str2[i]}
+					\State greaterNumber:=lStr2
+					\State break
+					\EndIf
+					\EndFor
+					\EndIf
+					\State Koniec, zmienna greaterNumber zawiera wartość większej liczby
+				\end{algorithmic}[5]
+		\section{Zadanie 3}
+			\subsection{pseudokod}
+				\begin{algorithmic}[6]
+					\Require $str1 \in [a-z]$
+					\Require $str2 \in [a-z]$
+					\State order:=[]
+					\State lStr1:=len(str1)
+					\State lStr2:=len(str2)
+					\If{lStr1 == lStr2}
+						\For{$i \in 1,\dots,lStr1$}
+							\If{ord(str1[i]) == ord(str2[i])}
+								\State continue
+							\ElsIf{ord(str1[i] > ord(str2[i]))}
+								\State order[0]:=str2
+								\State order[1]:=str1
+								\State break
+							\ElsIf{ord(str1[i] < ord(str2[i]))]}
+								\State order[0]:=str1
+								\State order[1]:=str2
+								\State break
+							\EndIf
+						\EndFor
+					\ElsIf{lStr1 < lStr2}
+						\For{$i \in 1,\dots,lStr1$}
+							\If{ord(str1[i]) == ord(str2[i])}
+								\If{i==lStr1}
+									\State order[0]:=str1
+									\State order[1]:=str2
+									\State break
+								\Else
+									\State continue
+								\EndIf
+							\ElsIf{ord(str1[i] > ord(str2[i]))}
+								\State order[0]:=str2
+								\State order[1]:=str1
+								\State break
+							\ElsIf{ord(str1[i] < ord(str2[i]))]}
+								\State order[0]:str1
+								\State order[1]:=str2
+								\State break
+							\EndIf
+						\EndFor
+					\ElsIf{lStr1 > lStr2}
+						\For{$i \in 1,\dots,lStr2$}
+							\If{ord(str1[i]) == ord(str2[i])}
+								\If{i==lStr2}
+			 						\State order[0]:=str2
+			 						\State order[0]:=str1
+									\State break
+								\Else
+									\State continue
+								\EndIf
+							\ElsIf{ord(str1[i] > ord(str2[i]))}
+								\State order[0]:=str2
+								\State order[1]:=str1
+								\State break
+							\ElsIf{ord(str1[i] < ord(str2[i]))]}
+								\State order[0]:str1
+								\State order[1]:=str2
+								\State break
+							\EndIf
+						\EndFor
+					\EndIf
+					\State Koniec, zmienna tablicowa order zawiera kolejność słów
+				\end{algorithmic}[6]
+			\section{Złożoność pamięciowa}
+				Nie wykorzystujemy w tym algorytmie pomocnicznych tablic, jedyne dodatkowe zmienne to długości słów oraz zmienna przechowująca porządek słów. Więc złożoność pamięciowa jest w przybliżeniu liniowa O(n)
+				Złożoność czasowa zależy tylko od długości dłuższego słowa więc złożoność czasowa wynosi również O(n)
+		\section{Zadanie 3}
+		
+\end{document}
