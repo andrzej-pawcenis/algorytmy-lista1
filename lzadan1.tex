@@ -7,6 +7,7 @@
 \usepackage{algpseudocode}
 \usepackage{lmodern}  
 \title{Algorytmy lista 1}
+\author{Andrzej Pawcenis}
 \begin{document}
 	\maketitle
 	\section{Wstęp}
@@ -226,31 +227,31 @@
 			Złożoność czasowa wynosi O(n*log(log(n)))
 		\section{Implementacja}
 			\begin{lstlisting}[language=Python, caption=implementacja sita Erostenesa]
-				import math
-				number=100
+import math
+number=100
 				
-				sieve = []
-				sieve = [True for i in range(number)]
+sieve = []
+sieve = [True for i in range(number)]
 				
-				sieve[0] = False
-				sieve[1] = False
+sieve[0] = False
+sieve[1] = False
 				
-				for i in range(2, int(math.ceil(math.sqrt(number)))):
-				if sieve[i]:
-				k = 2
-				j = k * i
-				while j < number:
-				sieve[j] = False
-				k = k + 1
-				j = i * k
+for i in range(2, int(math.ceil(math.sqrt(number)))):
+	if sieve[i]:
+		k = 2
+		j = k * i
+		while j < number:
+			sieve[j] = False
+			k = k + 1
+			j = i * k
 				
-				primes = [idx for idx, element in enumerate(sieve) if element == True]
-				print(primes)
+primes = [idx for idx, element in enumerate(sieve) if element == True]
+print(primes)
 			\end{lstlisting}
 		\subsection{Przykład}
 			\begin{lstlisting}
-				python3 sieve.py 
-				[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+python3 sieve.py 
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 			\end{lstlisting}
 	\section{Zadanie 5}
 			Znajdź przykładowe c oraz n0 pokazujące, że złożoność $T(n)=0.1 \cdot n \cdot log(n)+30 \cdot n$ jest klasy $O(nlog(n))$
