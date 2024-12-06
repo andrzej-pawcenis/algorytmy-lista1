@@ -198,6 +198,53 @@
 			\section{Złożoność pamięciowa}
 				Nie wykorzystujemy w tym algorytmie pomocnicznych tablic, jedyne dodatkowe zmienne to długości słów oraz zmienna przechowująca porządek słów. Więc złożoność pamięciowa jest w przybliżeniu liniowa O(n)
 				Złożoność czasowa zależy tylko od długości dłuższego słowa więc złożoność czasowa wynosi również O(n)
-		\section{Zadanie 3}
-		
+		\section{Zadanie 4}
+			\subsection{Cel}
+			Celem algorytmu jest znalezienie liczb pierwszych od podane liczby
+			\subsection{Wejście}
+			Algorytm przyjmuje liczbę.
+			\subsection{Wyjście}
+			Zmienna tablicowa której indeksy są liczbami a wartości informacją czy liczba jest pierwsza czy nie
+			\subsection{Założenia}
+			Podana liczba jest większa od 1
+			\subsection{Kroki}
+			\begin{algorithmic}[5]
+				\Require $n \in  \mathbb{N}$
+				\Ensure $n > 1$
+				\State A tablica wartości logicznych o wielkości n
+				\For{i:=2,3,\dots,$\sqrt{n}$}
+					\If{A[i] = true}
+						\For{j:=2*i,3*i,\dots,n}
+							\State A[j] := false
+						\EndFor
+					\EndIf
+				\EndFor
+				\State Wyjście: indeksy tablicy A zawierające wartość true
+			\end{algorithmic}[5]
+		\section{Złożoność}
+			Złożoność pamięciowa O(n) ponieważ wielkość wynikowej tablicy zależy liniowo.
+			Złożoność czasowa wynosi O(n*log(log(n)))
+		\section{Implementacja}
+			\begin{lstlisting}[language=Python, caption=implementacja sita Erostenesa]
+				import math
+				number=100
+				
+				sieve = []
+				sieve = [True for i in range(number)]
+				
+				sieve[0] = False
+				sieve[1] = False
+				
+				for i in range(2, int(math.ceil(math.sqrt(number)))):
+				if sieve[i]:
+				k = 2
+				j = k * i
+				while j < number:
+				sieve[j] = False
+				k = k + 1
+				j = i * k
+				
+				primes = [idx for idx, element in enumerate(sieve) if element == True]
+				print(primes)
+			\end{lstlisting}
 \end{document}
