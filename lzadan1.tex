@@ -247,4 +247,46 @@
 				primes = [idx for idx, element in enumerate(sieve) if element == True]
 				print(primes)
 			\end{lstlisting}
+		\subsection{Przykład}
+			\begin{lstlisting}
+				python3 sieve.py 
+				[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+			\end{lstlisting}
+	\section{Zadanie 5}
+			Znajdź przykładowe c oraz n0 pokazujące, że złożoność $T(n)=0.1 \cdot n \cdot log(n)+30 \cdot n$ jest klasy $O(nlog(n))$
+			$T(n)$ zawiera dwa składniki $0.1 \cdot n \cdot log(n)$ oraz $30 \cdot n$ co sugeruje, że przy odpowiednio dużych wartościach n element $30 \cdot n$ staje się pomijalny.
+			Mamy:
+			\begin{equation}
+				0.1 \cdot n \cdot log(n) + 30 \cdot n \leq c \cdot n \cdot log(n)
+			\end{equation}
+			zakładając $n \geq 0$ dzielimy obustronnie przez n:
+			\begin{equation}
+				0.1 \cdot log(n) + 30 \leq c \cdot log(n)
+			\end{equation}
+			dzielimy przez $log(n)$
+			\begin{equation}
+				0.1 + \frac{30}{log(n)} \leq c
+			\end{equation}
+			Arbitralnie wybierzmy $n_0=100$ wtedy:
+			\begin{equation}
+				0.1 + \frac{30}{log_{10}(100)} \leq c
+			\end{equation}
+			\begin{equation}
+				15.1 \leq c
+			\end{equation}
+			Teraz przyrównując:
+			\begin{equation}
+				0.1 \cdot n \cdot log(n) + 30 \cdot n \leq c \cdot n \cdot log(n)
+			\end{equation}
+			Obliczając lewą stronę:
+			\begin{equation}
+				0.1 \cdot 100 \cdot log_{10}(100) + 30 \cdot * 100 = 3020
+			\end{equation}
+			Obliczając prawą stronę:
+			\begin{equation}
+				15.1 \cdot 100 \cdot log_{10}(100) = 3020
+			\end{equation}
+			czyli lewa strona jest mniejsza równa prawej stronie co spełnia nasz warunek.
+	\section{Podsumowanie}
+		Źródła tex oraz python dla tego dokumentu można znaleźć pod adresem https://github.com/andrzej-pawcenis/algorytmy-lista1
 \end{document}
