@@ -1,0 +1,9 @@
+graph Cities {
+layout=sfdp
+sep=10
+node [shape=circle, width=0.5];
+  M1 -- M3 [label="10km" xlabel="25m" color=red]
+  M1 -- M4 [label="5km" xlabel="30m" color=green]
+  M4 -- M2 [label="20km" xlabel="60m" color=green]
+  M3 -- M2 [label="25km" xlabel="45m" color=red]
+}
